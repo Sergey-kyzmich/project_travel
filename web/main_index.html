@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор путешествия</title>
+    <style>body{
+        background: rgb(206, 206, 206);
+    }</style>
+</head>
+<body>
+    <body>
+        <body>
+            <h2>Введите название страны:</h2>
+            <input  type = "text" id = "Name_Country" size = 30>
+        </body>
+    
+        <body>
+            <h2>Введите название города:</h2>
+            <input type = "text" id = "Name_City" size = 40>
+        </body>
+    
+        <body>
+            <h2>Введите название географического объекта:</h2>
+            <input type = "text" id = "Name_geogr_obj" size = 40>
+        </body>
+
+        <body>
+            <h2>Прокоментируйте свое путешествие:</h2>
+            <input type = "text" id = "comment" size = 50>
+        </body>
+
+        <body>
+            <h2>Выберите дату начала путешествия:</h2>
+            <input type = "date" id = "start_date">
+        </body>
+        <br>
+        <body>
+            <h2>Выберите дату окончания путешествия:</h2>
+            <input type = "date" id = "end_date">
+        </body>
+    
+        <body>
+            <h2>Оцените свое путешествие:</h2>
+            <select name = "ocenca_travel" id = 'ocenca_travel'>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </body>
+    
+        <body>
+            <h2>Оцените свою активность в данном путешествии:</h2>
+            <select name = "ocenca_active" id = 'ocenca_active'>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </body>
+        <br>
+        <br>
+        <body>
+            <button name = "main_button" onclick="write_data()">Сохранить изменения</button><br><br><br>
+            <button name = "to_table_button" onclick="open_html('table_index.html')">Открыть таблицу путешествий</button>
+</body>
+<script type="text/javascript" src="/eel.js"></script>
+<script type="text/javascript" src="main_script.js"></script>
+<script type="text/javascript">    
+</script>
+</html>
