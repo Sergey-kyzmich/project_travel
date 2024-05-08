@@ -31,7 +31,6 @@ def add(country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
     db.commit()
     db.close()
 
-
 @eel.expose
 def create_db():
     db = sqlite3.connect('db_travel.db')
@@ -75,6 +74,7 @@ def delete(id):
 def edit(id, country, city, geogr_obg, date_start, date_end, comment, ocenca, active):
     db = sqlite3.connect('db_travel.db')
     cursor = db.cursor()
+    print(id, country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
     if country!="":cursor.execute(f'''UPDATE travel SET country = "{country}" WHERE id = {id}''');db.commit()
     if city!="":cursor.execute(f'''UPDATE travel SET city = "{city}" WHERE id = {id}''');db.commit()
     if geogr_obg!="":cursor.execute(f'''UPDATE travel SET geogr_obg = "{geogr_obg}" WHERE id = {id}''');db.commit()
@@ -91,7 +91,6 @@ def give_line(id):
     db = sqlite3.connect('db_travel.db')
     cursor = db.cursor()
     res = cursor.execute(f"SELECT * FROM travel WHERE id = {id}")
-    a = []
     for i in res:
         db.close()
         return i
@@ -107,7 +106,6 @@ def give_column(name):
         a.append(i[0])
     db.close()
     return a
-
 
 @eel.expose
 def len_db():

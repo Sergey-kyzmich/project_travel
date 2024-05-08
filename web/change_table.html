@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор путешествия</title>
+    <title>Изменение данных о путешествии</title>
     <style>body{
         background: rgb(206, 206, 206);
     }</style>
 </head>
-<body>
+<body onload="start_w_i_i()">
+    <button name="back" id = "back" align="right" onclick = "close_change_table_window()"> ←Назад </button><br><br>
     <body>
         <body>
             <h2>Введите название страны:</h2>
@@ -61,15 +62,13 @@
                 <option value="5">5</option>
             </select>
         </body>
-        <br>
-        <br>
-        <body>
-            <button name = "main_button" onclick="write_data()">Сохранить изменения</button><br><br><br>
-            <button name = "to_table_button" onclick="open_table_html('table_index.html')">Открыть таблицу путешествий</button>
-            <button name = "to_analitic_button" onclick="open_table_html('analitic_index.html')">Открыть страницу аналитики путешествий</button>
+    </body>
+    <br>
+    <button name = "main_button" onclick="change_data()">Сохранить изменения</button>
 </body>
 <script type="text/javascript" src="/eel.js"></script>
-<script type="text/javascript" src="main_script.js"></script>
-<script type="text/javascript">    
+<script type="text/javascript" src="table_script.js"></script>
+<script type="text/javascript" src="change_table_script.js"></script>
+<script type="text/javascript">
 </script>
 </html>

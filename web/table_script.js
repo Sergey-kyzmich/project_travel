@@ -1,4 +1,4 @@
-function get_data(){
+function start_table(){
     eel.add_to_html_table()(add_to_table)
 }
 
@@ -41,4 +41,44 @@ function add_to_table(res){
     tr.appendChild(td9);
     table_body.appendChild(tr);
     }
+    select_name_change_table()
+}
+
+function reload(){
+    location.reload()
+}
+
+function select_name_change_table(){
+    eel.len_db()(s_n_c_t)
+}
+
+function s_n_c_t(len){
+    console.log("len table=" + len)
+    const table_body_1 = document.getElementById('change_table_select');
+    const table_body_2 = document.getElementById("change_delete_select")
+    for(i = 0;i<len;i++){
+        let td1 = document.createElement("option");
+        td1.innerText = String(i+1);
+        td1.value = String(i+1)
+        table_body_1.appendChild(td1);
+        table_body_2.appendChild(td1)
+    }
+}
+
+
+function open_html(name_file){
+    d = document.getElementById("change_table_select").value
+    localStorage.setItem("line_id", d)
+    localStorage.setItem("window_table_html", window)
+    eel.open_html_file(name_file)
+}
+
+function delete_line(){
+    id = document.getElementById("change_delete_select").value
+    eel.delete(id)
+
+}
+
+function close_table_window(){
+    window.close()
 }

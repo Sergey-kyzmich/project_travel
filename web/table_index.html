@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Таблица путешествий</title>
     <style>body{
         background: rgb(206, 206, 206);
-    }</style>
+    }
+    
+    </style>
 </head>
-<script type="text/javascript" src="table_script.js">
+<script type="text/javascript" src="/eel.js"></script>
+<script type="text/javascript" src="table_script.js"></script>
+<script type="text/javascript" src="change_table_script.js"></script>
+<script type="text/javascript">  
 </script>
-<body onload="get_data();">
-    <table>
+
+<body style="position: relative">
+    <button name="back" id = "back"  onclick = "close_table_window()"> ←Назад </button><br><br>
+    <button name="reload" id = "reset_table" onclick=reload()>↻</button><br><br><br>
+</body>
+<body onload="start_table()">
+    <table align="center"   border="4">
         <thead>
             <th> Номер </th>
             <th> Страна </th>
@@ -26,9 +36,17 @@
         <tbody id="table-body">
         </tbody>
     </table>
+
+    <br><br>
+    <h4>Выберите номер путешествия:</h4>
+            <select name = "change_table_select" id = 'change_table_select'>
+            </select>
+            <button name = "btn_change_table" id = "btn_change_table" onclick="open_html('change_table.html')">Изменить запись</button><br><br>
+    
+    <h4>Выберите номер путешествия:</h4>
+    <select name = "change_delete_select" id = 'change_delete_select'>
+    </select>
+    <button name = "btn_delete_line" id = "btn_delete_table" onclick="delete_line()">Удалить запись</button>
 </body>
-<script type="text/javascript" src="/eel.js"></script>
-<script type="text/javascript" src="table_script.js"></script>
-<script type="text/javascript">  
-</script>
+
 </html>
