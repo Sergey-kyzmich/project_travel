@@ -19,7 +19,7 @@ function add_to_table(res){
     let td7 = document.createElement("td");
     let td8 = document.createElement("td");
     let td9 = document.createElement("td");
-
+    console.log("data="+data)
     td1.innerText = data[i-1][0];
     td2.innerText = data[i-1][1];
     td3.innerText = data[i-1][2];
@@ -49,19 +49,26 @@ function reload(){
 }
 
 function select_name_change_table(){
+    console.log("запуск s_n_c_t")
     eel.len_db()(s_n_c_t)
 }
 
 function s_n_c_t(len){
-    console.log("len table=" + len)
-    const table_body_1 = document.getElementById('change_table_select');
-    const table_body_2 = document.getElementById("change_delete_select")
+    console.log("s_n_c_t запущен")
+    console.log("len table=" + len);
+    table_body_1 = document.getElementById('change_table_select');
+    table_body_2 = document.getElementById("change_delete_select");
     for(i = 0;i<len;i++){
         let td1 = document.createElement("option");
         td1.innerText = String(i+1);
-        td1.value = String(i+1)
+        td1.value = String(i+1);
         table_body_1.appendChild(td1);
-        table_body_2.appendChild(td1)
+    }
+    for(i = 0;i<len;i++){
+        let td1 = document.createElement("option");
+        td1.innerText = String(i+1);
+        td1.value = String(i+1);
+        table_body_2.appendChild(td1);
     }
 }
 
@@ -76,7 +83,6 @@ function open_html(name_file){
 function delete_line(){
     id = document.getElementById("change_delete_select").value
     eel.delete(id)
-
 }
 
 function close_table_window(){

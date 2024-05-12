@@ -18,7 +18,7 @@ def add_to_html_table():
     data=[]
     for id in range(1, database.len_db()+1):
         data.append(database.give_line(id))
-    # print(data, database.len_db())
+    print(data, database.len_db())
     return {"len_table":database.len_db(), 
             "data":data}
 
