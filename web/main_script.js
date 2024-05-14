@@ -41,14 +41,15 @@ function write_data(error){
     active = ac.value
 
     console.log(error)
-    text_warn = "Вы уверенны, что хотите сохранить запись?"
-    if(error!=[]){
+    text_warn = "Не удалось сохранить запись, так как присутствуют ошибки!"
+    if(error){
         text_warn+="\nОшибки:\n"
         for(i=0;i<error.length;i++){
             text_warn+=error[i]
         }
-    }
-    if(confirm(text_warn)){
+        console.log("error=", error)
+        alert(text_warn)
+    }else{
     co.value = ""
     ci.value = ""
     ge.value = ""
@@ -57,6 +58,7 @@ function write_data(error){
     com.value = ""
     oc.value = ""
     ac.value = ""
+    alert("Запись сохранена!")
     eel.write_to_db(country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
     }
 }

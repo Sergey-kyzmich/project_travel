@@ -32,7 +32,8 @@ def check_error(country, city, geogr_obg, date_start, date_end, comment, ocenca,
     ch_l_e.check_num_in_input()
     ch_l_e.check_on_future()
     ch_l_e.add_n()
-    return ch_l_e.error
+    if ch_l_e.error!=[]:
+        return ch_l_e.error
 
 database.create_db()
 eel.start("main_index.html")

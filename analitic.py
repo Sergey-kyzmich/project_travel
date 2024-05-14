@@ -1,9 +1,10 @@
 import database
+import eel
 #count_country() подсчёт государств
 #count_native_country() подсчёт отечественных государств
 #count_city() функция подсчёта городов
 #count_geoobj() функция подсчёта посещенных мест
-
+@eel.expose
 def count_country():#подсчёт государств
     count_gos=0#подсчет государств
     countries=[]#массив со всеми странами
@@ -19,7 +20,7 @@ def count_country():#подсчёт государств
     return count_gos
 
 
-
+@eel.expose
 def count_native_country():#подсчёт отечественных государств
     count_otec=0#подсчет отечественных государств
     countries=[]#массив со всеми странами
@@ -53,7 +54,7 @@ def count_native_country():#подсчёт отечественных госуд
                      countries.append(name_country)
     return count_otec
 
-
+@eel.expose
 def count_city():#функция подсчёта городов
     count_town=0#подсчет городов
     cities=[]#массив со всеми городами(без повторов)
@@ -67,7 +68,7 @@ def count_city():#функция подсчёта городов
             cities.append(i)
     return count_town
 
-
+@eel.expose
 def count_geoobj():#функция подсчёта посещенных мест
     count_places=0#подсчет посещенных мест
     places=[]#массив со всеми посещенными местами(без повторов)

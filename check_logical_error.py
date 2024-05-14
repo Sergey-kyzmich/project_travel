@@ -22,7 +22,7 @@ import datetime
 def repl(country, city, geogr_obg, comment):
     country = country.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
     city = city.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
-    geogr_obg = geogr_obg.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+    geogr_obg = geogr_obg.replace("  ", " ")
     comment = comment.replace("  ", " ")
     return country, city, geogr_obg, comment
 
@@ -42,8 +42,9 @@ class check_logical_error():
         if self.date_start!="" or self.date_end!="":
             d1 = [int(x) for x in self.date_start.split("-")]
             d2 = [int(x) for x in self.date_end.split("-")]
-            date_start = datetime.date(year=d1[2], month=d1[1], day=d1[0])
-            date_end = datetime.date(year=d2[2], month=d2[1], day=d2[0])
+            print(d1)
+            date_start = datetime.date(year=d1[0], month=d1[1], day=d1[2])
+            date_end = datetime.date(year=d2[0], month=d2[1], day=d2[2])
             if date_end-date_start<datetime.timedelta(0):
                 self.error.append("Дата окончания путешествия не может быть раньше начала путешествия!")
             elif date_end-date_start==datetime.timedelta(0):
@@ -81,8 +82,8 @@ class check_logical_error():
         if self.date_start!="" or self.date_end!="":
             d1 = [int(x) for x in self.date_start.split("-")]
             d2 = [int(x) for x in self.date_end.split("-")]
-            date_start = datetime.date(year=d1[2], month=d1[1], day=d1[0])
-            date_end = datetime.date(year=d2[2], month=d2[1], day=d2[0])
+            date_start = datetime.date(year=d1[0], month=d1[1], day=d1[2])
+            date_end = datetime.date(year=d2[0], month=d2[1], day=d2[2])
             if date_start-datetime.date.today()>=datetime.timedelta(0):
                 self.error.append("Ошибка в поле «Дата начала путешествия»: путешествие не может быть в будущем!")
             if date_end-datetime.date.today()>datetime.timedelta(0):
@@ -96,7 +97,6 @@ class check_logical_error():
             else: return False
         if check(self.country): self.error.append(f"В поле «Страна» не может быть цифр!")
         if check(self.city): self.error.append(f"В поле «Город» не может быть цифр!")
-        if check(self.geogr_obg): self.error.append(f"В поле «Географический объект» не может быть цифр!")
 
     def add_n(self):
         for i in range(len(self.error)):
