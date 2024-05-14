@@ -81,8 +81,11 @@ function open_html(name_file){
 }
 
 function delete_line(){
-    id = document.getElementById("change_delete_select").value
-    eel.delete(id)
+    if(confirm("Вы уверены, что хотите удалить запись?")){
+        alert("Обновите страницу.(Кнопочка слева вверху)")
+        id = document.getElementById("change_delete_select").value
+        eel.delete(id)
+    }
 }
 
 function close_table_window(){
