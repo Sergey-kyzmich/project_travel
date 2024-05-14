@@ -1,18 +1,19 @@
 import eel
 import database
-from check_logical_error import check_logical_error
+from check_logical_error import check_logical_error, repl
 eel.init("web")
 
 database.create_db()
 
 @eel.expose
 def write_to_db(country, city, geogr_obg, date_start, date_end, comment, ocenca, active):
+    country, city, geogr_obg, comment = repl(country, city, geogr_obg, comment)
     database.add(country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
 
 @eel.expose
 def open_html_file(name_file_open):
     eel.show(name_file_open)
-        
+
 
 @eel.expose
 def add_to_html_table():

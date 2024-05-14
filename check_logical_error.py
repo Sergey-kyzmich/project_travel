@@ -19,6 +19,13 @@
 
 import datetime
 
+def repl(country, city, geogr_obg, comment):
+    country = country.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+    city = city.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+    geogr_obg = geogr_obg.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
+    comment = comment.replace("  ", " ")
+    return country, city, geogr_obg, comment
+
 class check_logical_error():
     def __init__(self, country, city, geogr_obg, date_start, date_end, comment, ocenca, active):
         self.country = country
