@@ -27,7 +27,6 @@ def add(country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
     db = sqlite3.connect('db_travel.db')
     cursor = db.cursor()
     id = len(list(cursor.execute("SELECT id from travel")))+1
-    print("id=", id, "active=", active)
     cursor.execute((f'INSERT INTO travel  VALUES ("{id}", "{country}", "{city}", "{geogr_obg}", "{date_start}", "{date_end}", "{comment}", "{ocenca}", "{active}")'))
     db.commit()
     db.close()
@@ -78,7 +77,6 @@ def delete(id):
 def edit(id, country, city, geogr_obg, date_start, date_end, comment, ocenca, active):
     db = sqlite3.connect('db_travel.db')
     cursor = db.cursor()
-    print(id, country, city, geogr_obg, date_start, date_end, comment, ocenca, active)
     if country!="":cursor.execute(f'''UPDATE travel SET country = "{country}" WHERE id = {id}''');db.commit()
     if city!="":cursor.execute(f'''UPDATE travel SET city = "{city}" WHERE id = {id}''');db.commit()
     if geogr_obg!="":cursor.execute(f'''UPDATE travel SET geogr_obg = "{geogr_obg}" WHERE id = {id}''');db.commit()

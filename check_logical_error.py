@@ -5,8 +5,7 @@
 #(Готово) цифры в полях страны и города
 #(Готово) Проверка на двойной пробел
 #(Готово) Добавить \n
-
-# уведомление с подтверждением
+#(Готово) уведомление с подтверждением
 
 # c = check_logical_error("Coutry","city","geogr_obg","13-06-2024", "12-06-2024", "comment", "ocenca", "active")
 # c.check_timedelta()
@@ -18,6 +17,20 @@
 # print(c.error)
 
 import datetime
+
+def give_date(self):
+    d1 = [int(x) for x in self.date_start.split("-")]
+    d2 = [int(x) for x in self.date_end.split("-")]
+    date_start = datetime.date(year=d1[0], month=d1[1], day=d1[2])
+    date_end = datetime.date(year=d2[0], month=d2[1], day=d2[2])
+    return date_start, date_end
+
+def check_no(name):
+    name = name.lower()
+    if (" нет " in name) or (" no " in name) or (" не " in name) or ("нет " in name) or ("no " in name) or ("не " in name):
+        return True
+    else:
+        return False
 
 def repl(country, city, geogr_obg, comment):
     country = country.replace("  ", " ").replace("0", "").replace("1", "").replace("2", "").replace("3", "").replace("4", "").replace("5", "").replace("6", "").replace("7", "").replace("8", "").replace("9", "")
@@ -40,11 +53,7 @@ class check_logical_error():
 
     def check_timedelta(self):
         if self.date_start!="" or self.date_end!="":
-            d1 = [int(x) for x in self.date_start.split("-")]
-            d2 = [int(x) for x in self.date_end.split("-")]
-            print(d1)
-            date_start = datetime.date(year=d1[0], month=d1[1], day=d1[2])
-            date_end = datetime.date(year=d2[0], month=d2[1], day=d2[2])
+            date_start, date_end = give_date(self)
             if date_end-date_start<datetime.timedelta(0):
                 self.error.append("Дата окончания путешествия не может быть раньше начала путешествия!")
             elif date_end-date_start==datetime.timedelta(0):
@@ -59,31 +68,13 @@ class check_logical_error():
         if self.date_end=="" or self.date_end.count(" ")==len(self.date_end): self.error.append("Поле «Дата окончания путешествия» должно быть заполнено!")
 
     def check_no_in_input(self):
-        if " нет " in self.country.lower() or \
-            " no " in self.country.lower() or \
-            " не " in self.country.lower() or\
-            "нет " in self.country.lower() or \
-            "no " in self.country.lower() or \
-            "не " in self.country.lower(): self.error.append("Поле «Страна» не должно иметь частицы «не»/«нет»/«no»!")
-        if " нет " in self.city.lower() or \
-            " no " in self.city.lower() or \
-            " не " in self.city.lower() or \
-            "нет " in self.city.lower() or \
-            "no " in self.city.lower() or \
-            "не " in self.city.lower(): self.error.append("Поле «Город» не должно иметь частицы «не»/«нет»/«no»!")
-        if " нет " in self.geogr_obg.lower() or \
-            " no " in self.geogr_obg.lower() or \
-            " не " in self.geogr_obg.lower() or \
-            "нет " in self.geogr_obg.lower() or \
-            "no " in self.geogr_obg.lower() or \
-            "не " in self.geogr_obg.lower(): self.error.append("Поле «Географический объект» не должно иметь частицы «не»/«нет»/«no»!")
+        if check_no(self.country): self.error.append("Поле «Страна» не должно иметь частицы «не»/«нет»/«no»!")
+        if check_no(self.city): self.error.append("Поле «Город» не должно иметь частицы «не»/«нет»/«no»!")
+        if check_no(self.geogr_obg): self.error.append("Поле «Географический объект» не должно иметь частицы «не»/«нет»/«no»!")
 
     def check_on_future(self):
         if self.date_start!="" or self.date_end!="":
-            d1 = [int(x) for x in self.date_start.split("-")]
-            d2 = [int(x) for x in self.date_end.split("-")]
-            date_start = datetime.date(year=d1[0], month=d1[1], day=d1[2])
-            date_end = datetime.date(year=d2[0], month=d2[1], day=d2[2])
+            date_start, date_end = give_date(self)
             if date_start-datetime.date.today()>=datetime.timedelta(0):
                 self.error.append("Ошибка в поле «Дата начала путешествия»: путешествие не может быть в будущем!")
             if date_end-datetime.date.today()>datetime.timedelta(0):

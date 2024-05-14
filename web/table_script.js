@@ -3,11 +3,9 @@ function start_table(){
 }
 
 function add_to_table(res){
-    console.log(res)
     data = res["data"]
     len_table = res["len_table"]
     for(i=1;i<=len_table;i++){
-        console.log(data[i])
     const table_body = document.getElementById("table-body");
     let tr = document.createElement("tr");
     let td1 = document.createElement("td");
@@ -19,7 +17,6 @@ function add_to_table(res){
     let td7 = document.createElement("td");
     let td8 = document.createElement("td");
     let td9 = document.createElement("td");
-    console.log("data="+data)
     td1.innerText = data[i-1][0];
     td2.innerText = data[i-1][1];
     td3.innerText = data[i-1][2];
@@ -49,13 +46,10 @@ function reload(){
 }
 
 function select_name_change_table(){
-    console.log("запуск s_n_c_t")
     eel.len_db()(s_n_c_t)
 }
 
 function s_n_c_t(len){
-    console.log("s_n_c_t запущен")
-    console.log("len table=" + len);
     table_body_1 = document.getElementById('change_table_select');
     table_body_2 = document.getElementById("change_delete_select");
     for(i = 0;i<len;i++){
