@@ -4,6 +4,7 @@ import eel
 #count_native_country() подсчёт отечественных государств
 #count_city() функция подсчёта городов
 #count_geoobj() функция подсчёта посещенных мест
+#ocenca_otech_and_zar() функция подсчета оценки зарубежных и отечественных курортов
 @eel.expose
 def count_country():#подсчёт государств
     count_gos=0#подсчет государств
@@ -26,26 +27,7 @@ def count_native_country():#подсчёт отечественных госуд
     column_country=database.give_column("country")#колонка из введеного
     for name_country in column_country:
         name_country=name_country.lower()
-        if sum(["рф" in name_country,
-                "россия" in name_country,
-                "беларусь" in name_country,
-                "казахстан" in name_country,
-                "киргизстан"in name_country,
-                "узбекистан"in name_country,
-                "таджикистан"in name_country, 
-                "российская федерация" in name_country,
-                "беларусь" in name_country, 
-                "казахстан" in name_country, 
-                "киргизстан" in name_country, 
-                "узбекистан" in name_country, 
-                "таджикистан" in name_country, 
-                "беларусь" in name_country, 
-                "казахстан" in name_country, 
-                "киргизстан" in name_country, 
-                "узбекистан" in name_country, 
-                "таджикистан" in name_country, 
-                "кндр" in name_country, 
-                "корейская народная демократическая республика" in name_country])>=1:
+        if check_otech_country(name_country):
                 if name_country not in countries:
                      count_otec+=1
                      countries.append(name_country)
@@ -74,3 +56,50 @@ def count_geoobj():#функция подсчёта посещенных мес�
             count_places+=1
             places.append(i)
     return count_places
+
+
+def check_otech_country(name_country):
+    if sum(["рф" in name_country,
+                "россия" in name_country,
+                "беларусь" in name_country,
+                "казахстан" in name_country,
+                "киргизстан"in name_country,
+                "узбекистан"in name_country,
+                "таджикистан"in name_country, 
+                "российская федерация" in name_country,
+                "беларусь" in name_country, 
+                "казахстан" in name_country, 
+                "киргизстан" in name_country, 
+                "узбекистан" in name_country, 
+                "таджикистан" in name_country, 
+                "беларусь" in name_country, 
+                "казахстан" in name_country, 
+                "киргизстан" in name_country, 
+                "узбекистан" in name_country, 
+                "таджикистан" in name_country, 
+                "кндр" in name_country, 
+                "корейская народная демократическая республика" in name_country])>=1:
+        return True
+    else:
+        return False
+
+
+@eel.expose    
+def ocenca_otech_and_zar():
+    column_country=database.give_column("country")
+    ocenca = database.give_column("ocenca")
+    otech_ocenca, otech_count, zar_ocenca, zar_count = 0,0,0,0
+    for i in range(len(column_country)):
+        if check_otech_country(column_country[i]):
+            otech_ocenca += ocenca[i]
+            otech_count += 1
+        else:
+            zar_ocenca+=ocenca[i]
+            zar_count+=1
+    if otech_count==0: sr_otech = None
+    else: sr_otech = round(otech_ocenca/otech_count, 2)
+
+    if zar_count==0: sr_zar = None
+    else: sr_zar = round(zar_ocenca/zar_count, 2)
+
+    return sr_otech, sr_zar
