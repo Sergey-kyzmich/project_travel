@@ -1,5 +1,5 @@
 import eel
-import database
+import database, analitic
 from check_logical_error import check_logical_error, repl
 eel.init("web")
 
